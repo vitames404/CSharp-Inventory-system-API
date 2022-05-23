@@ -5,7 +5,8 @@ API Project made in C# using Dapper, Swagger and SQLServer
 ![image](https://user-images.githubusercontent.com/82846956/169732711-5a65f141-bd23-4e70-b45d-28d41a64461c.png)
 
 Tables script:
-```CREATE TABLE Users
+``
+CREATE TABLE Users
 (
     userid int IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(120) NOT NULL,
@@ -33,5 +34,5 @@ CREATE TABLE Inventory
     userid int,
     itemid int
 );
-GO```
-
+GO
+``
