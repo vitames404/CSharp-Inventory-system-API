@@ -30,7 +30,7 @@ GO
 
 CREATE TABLE Inventory
 (
-    IdInv int IDENTITY(1,1) PRIMARY KEY, 
+    invid int IDENTITY(1,1) PRIMARY KEY, 
     userid int,
     itemid int
 );
