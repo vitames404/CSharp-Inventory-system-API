@@ -31,11 +31,15 @@ namespace InventoryAPI.Repositories
 
         public async Task<UserItem> InsertItemOnInv(UserItem ui)
         {
-            var sqlQuery = "INSERT INTO useritems (UserId, ItemId) VALUES (@usid, @itid)";
+            var sqlQuery = "INSERT INTO useritems (userid, itemid) VALUES (@userid, @itemid)";
 
             using(var connection = new SqlConnection(_connectionString))
             {
-                await connection.ExecuteAsync(sqlQuery, new {ui.UserId, ui.ItemId});
+                await connection.ExecuteAsync(sqlQuery, new {
+                    ui.invid,
+                    ui.userid, 
+                    ui.itemid
+                    });
             }
 
             return ui;
@@ -43,7 +47,7 @@ namespace InventoryAPI.Repositories
 
         public async Task DeleteFrominv(int id)
         {
-            var sqlQuery = "DELETE FROM useritems WHERE IdInv = @idinv";
+            var sqlQuery = "DELETE FROM useritems WHERE invid = @idinv";
 
             using(var connection = new SqlConnection(_connectionString))
             {

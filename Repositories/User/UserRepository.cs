@@ -55,7 +55,7 @@ namespace InventoryAPI.Repositories
             {
                 await connection.ExecuteAsync(sqlQuery, new
                 {
-                    user.Id,
+                    user.userid,
                     user.Name,
                     user.Login,
                     user.Email,

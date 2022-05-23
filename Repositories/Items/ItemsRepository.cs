@@ -45,7 +45,7 @@ namespace InventoryAPI.Repositories
             using(var connection = new SqlConnection(_connectionString))
             {
                 await connection.ExecuteAsync(sqlQuery, new {
-                    items.itemId,
+
                     items.itemIcon,
                     items.damage,
                     items.defense,
@@ -61,17 +61,17 @@ namespace InventoryAPI.Repositories
 
         public async Task<Item> UpdateItem(int id, Item item)
         {
-            var sqlQuery = "UPDATE Items SET itemIcon = @Icon, value = @ItemValue, damage = @ItemDamage, defense = @ItemDefense, weigth = @ItemWeigth WHERE itemId = @Itemid ";
+            var sqlQuery = "UPDATE Items SET itemIcon = @itemIcon, value = @value, damage = @damage, defense = @defense, weigth = @weigth WHERE itemId = @Itemid ";
 
             using(var connection =  new SqlConnection(_connectionString))
             {
                 await connection.ExecuteAsync(sqlQuery, new{
                     Itemid = id,
-                    Icon = item.itemIcon,
-                    ItemValue = item.value,
-                    ItemDamage = item.damage,
-                    ItemDefense = item.defense,
-                    ItemWeigth = item.weigth
+                    item.itemIcon,
+                    item.value,
+                    item.damage,
+                    item.defense,
+                    item.weigth
                 });
 
                 return item;

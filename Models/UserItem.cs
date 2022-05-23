@@ -2,8 +2,8 @@ using System;
 
 namespace InventoryAPI.Models{
     public class UserItem{
-        public int IdInv { get; set; }
-        public int UserId { get; set; }
-        public int ItemId { get; set; }
+        public int invid { get; set; }
+        public int userid { get; set; }
+        public int itemid { get; set; }
     }
 }
