@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using InventoryAPI.Models;
@@ -34,16 +33,24 @@ namespace InventoryAPI.Controllers
         }
 
         //Get a user by login
-        [HttpGet("/Usuarios/login/{login}")]
-        public async Task<ActionResult<User>> GetUsersLogin([FromRoute] string login)
+        [HttpGet("/Usuarios/login/{login}/{password}")]
+        public async Task<ActionResult<User>> GetUsersLogin([FromRoute] string login, [FromRoute] string password)
         {
-            return await _repository.GetUserLogin(login);
+            return await _repository.GetUserLogin(login, password);
         }
 
         //Post a new user 
         [HttpPost("/Usuarios")]
         public async Task<ActionResult<User>> PostUser([FromBody]User user)
         {
+
+            if (user.isValidEmail(user.Email) == false)
+            {
+                return BadRequest("Seu e-mail é inválido");
+            }
+            
+            user.Password = user.EncryptPassword(user.Password);
+
             var newUser = await _repository.Create(user);
             return newUser;
         }

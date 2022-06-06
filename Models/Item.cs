@@ -1,5 +1,3 @@
-using System;
-
 namespace InventoryAPI.Models{
     public class Item{
         public int itemId { get; set;}

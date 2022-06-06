@@ -11,6 +11,8 @@ namespace InventoryAPI.Repositories
     {
         public readonly string _connectionString;
 
+        User usuario = new User();
+
         public UserRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("Default");
@@ -37,13 +39,15 @@ namespace InventoryAPI.Repositories
             }
         }
 
-        public async Task<User> GetUserLogin(string login)
+        public async Task<User> GetUserLogin(string login, string password)
         {
-            var sqlQuery = "SELECT * FROM Users where login = @UserLogin";
+            var sqlQuery = "SELECT * FROM Users where login = @UserLogin and Password = @password";
+
+            password = usuario.EncryptPassword(password);
 
             using(var connection = new SqlConnection(_connectionString))
             {
-                return await connection.QueryFirstOrDefaultAsync<User>(sqlQuery, new { UserLogin = login });
+                return await connection.QueryFirstOrDefaultAsync<User>(sqlQuery, new { UserLogin = login, password = password});
             }
         }
 
@@ -55,7 +59,6 @@ namespace InventoryAPI.Repositories
             {
                 await connection.ExecuteAsync(sqlQuery, new
                 {
-                    user.userid,
                     user.Name,
                     user.Login,
                     user.Email,

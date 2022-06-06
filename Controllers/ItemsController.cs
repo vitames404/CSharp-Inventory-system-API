@@ -1,8 +1,6 @@
 using InventoryAPI.Models;
 using InventoryAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -34,15 +32,26 @@ namespace InventoryAPI.Controllers
 
         //Post a new item
         [HttpPost("/Items")]
-        public async Task<Item> CreateNewItem([FromBody] Item item)
+        public async Task<ActionResult<Item>> CreateNewItem([FromBody] Item item)
         {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+            
             return await _repository.CreateNewItem(item);
         }
 
         //Update an Item
         [HttpPut("/Items/{id}")]
-        public async Task<Item> UpdateItem([FromRoute] int id, [FromBody] Item item)
+        public async Task<ActionResult<Item>> UpdateItem([FromRoute] int id, [FromBody] Item item)
         {
+            
+            if (item.itemIcon == null)
+            {
+                return BadRequest();
+            }
+
             return await _repository.UpdateItem(id, item);
         }
 

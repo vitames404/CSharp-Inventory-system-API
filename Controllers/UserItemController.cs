@@ -1,7 +1,6 @@
 using InventoryAPI.Models;
 using InventoryAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,7 +18,7 @@ namespace InventoryAPI.Controllers
             _repository = repository;
         }
 
-        //Get all "Inventorys" from useritems database
+        //Get all "Inventories" from useritems database
         [HttpGet("/Inventory")]
         public async Task<IEnumerable<UserItem>> GetAllInventory()
         {

@@ -1,5 +1,3 @@
-using System;
-
 namespace InventoryAPI.Models{
     public class UserItem{
         public int invid { get; set; }

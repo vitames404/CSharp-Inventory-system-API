@@ -8,7 +8,7 @@ namespace InventoryAPI.Repositories
     {
         Task<IEnumerable<User>> Get();
         Task<User> GetUser(int id);
-        Task<User> GetUserLogin(string login);
+        Task<User> GetUserLogin(string login, string password);
         Task<User> Create(User user);
         Task<User> Update(int id, User user);
         Task Delete(int id);
