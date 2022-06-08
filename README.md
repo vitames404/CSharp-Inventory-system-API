@@ -28,7 +28,7 @@ CREATE TABLE Items
 );
 GO
 
-CREATE TABLE Inventory
+CREATE TABLE useritems
 (
     invid int IDENTITY(1,1) PRIMARY KEY, 
     userid int,
