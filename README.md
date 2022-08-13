@@ -1,4 +1,4 @@
-# Inventory-System-API---Dapper---Swagger---SQLServer
+# Inventory-System-API
 
 API Project made in C# using Dapper, Swagger and SQLServer
 
